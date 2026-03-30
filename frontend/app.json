@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "AI Translate App",
+    "slug": "ai-translate-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Camera is used to translate text in real-time",
+        "NSMicrophoneUsageDescription": "Allow AI Translate to access your microphone for voice translation.",
+        "NSSpeechRecognitionUsageDescription": "Allow AI Translate to use speech recognition for voice translation."
+      }
+    },
+    "android": {
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE",
+        "CAMERA",
+        "RECORD_AUDIO",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.aitranslate.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-camera"
+    ],
+    "scheme": "ai-translate"
+  }
+}
