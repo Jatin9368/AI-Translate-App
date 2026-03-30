@@ -8,7 +8,8 @@ import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getHistory, clearHistory } from '../../services/api';
 import { getLanguageName, getLanguageFlag } from '../../constants/languages';
-import { COLORS } from '../../constants/config';
+import { LinearGradient } from 'expo-linear-gradient';
+import { COLORS, GRADIENTS } from '../../constants/config';
 
 export default function HistoryScreen() {
   const [history, setHistory]     = useState([]);
@@ -54,19 +55,19 @@ export default function HistoryScreen() {
   );
 
   return (
+    <LinearGradient colors={GRADIENTS.background} style={{ flex: 1 }} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
-
-      <View style={styles.header}>
-        <Ionicons name="time" size={24} color={COLORS.primary} />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+      <LinearGradient colors={GRADIENTS.header} style={styles.header} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
+        <Ionicons name="time" size={24} color="#fff" />
         <Text style={styles.headerTitle}>History</Text>
         {history.length > 0 && (
           <TouchableOpacity style={styles.clearBtn} onPress={handleClear}>
-            <Ionicons name="trash-outline" size={18} color={COLORS.error} />
+            <Ionicons name="trash-outline" size={18} color="#fff" />
             <Text style={styles.clearText}>Clear</Text>
           </TouchableOpacity>
         )}
-      </View>
+      </LinearGradient>
 
       <FlatList
         data={history}
@@ -103,16 +104,17 @@ export default function HistoryScreen() {
         contentContainerStyle={history.length === 0 && styles.emptyContainer}
       />
     </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  safe:         { flex: 1, backgroundColor: COLORS.background },
-  center:       { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: COLORS.background },
-  header:       { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 18, paddingVertical: 14, borderBottomWidth: 1, borderBottomColor: COLORS.border },
-  headerTitle:  { flex: 1, fontSize: 22, fontWeight: '700', color: COLORS.text },
+  safe:         { flex: 1, backgroundColor: 'transparent' },
+  center:       { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'transparent' },
+  header:       { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 18, paddingVertical: 16 },
+  headerTitle:  { flex: 1, fontSize: 22, fontWeight: '700', color: '#fff' },
   clearBtn:     { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  clearText:    { color: COLORS.error, fontSize: 14, fontWeight: '600' },
+  clearText:    { color: '#fff', fontSize: 14, fontWeight: '600' },
   item:         { backgroundColor: COLORS.surface, padding: 16 },
   itemHeader:   { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
   langPair:     { fontSize: 13, color: COLORS.primary, fontWeight: '600' },

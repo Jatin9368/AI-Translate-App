@@ -10,7 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { translateDirect } from '../../services/translate';
 import LanguagePicker from '../../components/LanguagePicker';
-import { COLORS } from '../../constants/config';
+import { LinearGradient } from 'expo-linear-gradient';
+import { COLORS, GRADIENTS } from '../../constants/config';
 import { getLanguageName } from '../../constants/languages';
 
 function toRecognitionLang(code) {
@@ -206,18 +207,19 @@ export default function VoiceScreen() {
   const displayText = partialText || inputText;
 
   return (
+    <LinearGradient colors={GRADIENTS.background} style={{ flex: 1 }} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
     <SafeAreaView style={styles.safe} edges={['top']}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.background} />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
-      <View style={styles.header}>
-        <Ionicons name="mic" size={24} color={COLORS.primary} />
+      <LinearGradient colors={GRADIENTS.header} style={styles.header} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}>
+        <Ionicons name="mic" size={24} color="#fff" />
         <Text style={styles.headerTitle}>Voice Translate</Text>
         {(inputText || translatedText) && (
           <TouchableOpacity onPress={handleClear} style={styles.clearBtn}>
-            <Ionicons name="refresh" size={20} color={COLORS.textSecondary} />
+            <Ionicons name="refresh" size={20} color="#fff" />
           </TouchableOpacity>
         )}
-      </View>
+      </LinearGradient>
 
       <View style={styles.langRow}>
         <TouchableOpacity style={styles.langBtn} onPress={() => setShowSrcPicker(true)}>
@@ -250,7 +252,13 @@ export default function VoiceScreen() {
             onPress={handleMicPress}
             activeOpacity={0.85}
           >
-            <Ionicons name={isListening ? 'stop' : 'mic'} size={44} color="#fff" />
+            <LinearGradient
+              colors={isListening ? GRADIENTS.micActive : GRADIENTS.mic}
+              style={styles.micGrad}
+              start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+            >
+              <Ionicons name={isListening ? 'stop' : 'mic'} size={44} color="#fff" />
+            </LinearGradient>
           </TouchableOpacity>
         </View>
 
@@ -339,12 +347,13 @@ export default function VoiceScreen() {
       <LanguagePicker visible={showSrcPicker} onSelect={setSourceLang} onClose={() => setShowSrcPicker(false)} showAuto />
       <LanguagePicker visible={showTgtPicker} onSelect={setTargetLang} onClose={() => setShowTgtPicker(false)} showAuto={false} />
     </SafeAreaView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  safe:            { flex: 1, backgroundColor: COLORS.background },
-  header:          { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 18, paddingVertical: 14 },
+  safe:            { flex: 1, backgroundColor: 'transparent' },
+  header:          { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 18, paddingVertical: 16 },
   headerTitle:     { flex: 1, fontSize: 22, fontWeight: '700', color: COLORS.text },
   clearBtn:        { padding: 6 },
   langRow:         { flexDirection: 'row', alignItems: 'center', marginHorizontal: 14, marginBottom: 12, backgroundColor: COLORS.surface, borderRadius: 14, borderWidth: 1, borderColor: COLORS.border, overflow: 'hidden' },
@@ -355,8 +364,9 @@ const styles = StyleSheet.create({
   micArea:         { alignItems: 'center', justifyContent: 'center', height: 150, marginVertical: 4 },
   pulseRing:       { position: 'absolute', width: 120, height: 120, borderRadius: 60, backgroundColor: `${COLORS.primary}22` },
   pulseRingActive: { backgroundColor: `${COLORS.error}28` },
-  micBtn:          { width: 88, height: 88, borderRadius: 44, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center', elevation: 10, shadowColor: COLORS.primary, shadowOpacity: 0.5, shadowRadius: 16, shadowOffset: { width: 0, height: 6 } },
-  micBtnActive:    { backgroundColor: COLORS.error },
+  micBtn:          { width: 88, height: 88, borderRadius: 44, overflow: 'hidden', elevation: 10, shadowColor: COLORS.primary, shadowOpacity: 0.5, shadowRadius: 16, shadowOffset: { width: 0, height: 6 } },
+  micBtnActive:    { shadowColor: COLORS.error },
+  micGrad:         { width: 88, height: 88, borderRadius: 44, alignItems: 'center', justifyContent: 'center' },
   micStatus:       { textAlign: 'center', color: COLORS.textSecondary, fontSize: 12, marginBottom: 14 },
   card:            { backgroundColor: COLORS.surface, marginHorizontal: 14, borderRadius: 16, padding: 16, marginBottom: 10, borderWidth: 1, borderColor: COLORS.border },
   outputCard:      { borderColor: COLORS.primaryDark, backgroundColor: COLORS.outputBg },

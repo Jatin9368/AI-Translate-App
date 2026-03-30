@@ -1,24 +1,38 @@
-// Change this to your backend server IP/URL
-// For Android emulator: http://10.0.2.2:5000
-// For physical device: http://YOUR_LOCAL_IP:5000 (e.g., http://192.168.1.5:5000)
-
 export const API_BASE_URL = 'http://10.0.2.2:5000/api';
 
+// India-inspired premium color palette
 export const COLORS = {
-  primary: '#4f9dff',
-  primaryDark: '#2979ff',
-  accent: '#00e5ff',
-  background: '#0f0f0f',
-  surface: '#1a1a1a',
-  surface2: '#242424',
-  surface3: '#2e2e2e',
-  text: '#f1f1f1',
-  textSecondary: '#9e9e9e',
-  border: '#333333',
-  error: '#ff5252',
-  warning: '#ffab40',
-  success: '#69f0ae',
-  overlay: 'rgba(0,0,0,0.7)',
-  inputBg: '#1e1e1e',
-  outputBg: '#0d1f3c',
+  primary:       '#FF9933',   // Saffron — India flag
+  primaryDark:   '#cc7a00',
+  secondary:     '#138808',   // India green
+  accent:        '#ffffff',
+  accentBlue:    '#000080',   // India blue (Ashoka Chakra)
+  background:    '#0a0a0f',
+  surface:       'rgba(255,255,255,0.06)',
+  surface2:      'rgba(255,255,255,0.11)',
+  surface3:      'rgba(255,255,255,0.18)',
+  text:          '#f8f8f8',
+  textSecondary: '#a0a0b0',
+  border:        'rgba(255,153,51,0.2)',
+  error:         '#ff5252',
+  warning:       '#ffd740',
+  success:       '#69f0ae',
+  overlay:       'rgba(0,0,0,0.7)',
+  inputBg:       'rgba(255,255,255,0.05)',
+  outputBg:      'rgba(255,153,51,0.08)',
+};
+
+export const GRADIENTS = {
+  background: ['#0a0a0f', '#12101a', '#0d1117'],
+  header:     ['#FF6200', '#FF9933', '#FFB347'],
+  button:     ['#FF6200', '#FF9933'],
+  buttonGreen:['#0a5c0a', '#138808'],
+  card:       ['rgba(255,255,255,0.07)', 'rgba(255,255,255,0.03)'],
+  output:     ['rgba(255,153,51,0.15)', 'rgba(255,98,0,0.05)'],
+  mic:        ['#FF6200', '#FF9933', '#FFD700'],
+  micActive:  ['#cc0000', '#ff5252'],
+  tab:        ['#12100e', '#0a0a0f'],
+  india:      ['#FF9933', '#FFFFFF', '#138808'],  // tricolor
+  chakra:     ['#000080', '#0000cc'],
+  glow:       ['rgba(255,153,51,0.3)', 'rgba(255,153,51,0)'],
 };

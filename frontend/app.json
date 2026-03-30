@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AI Translate App",
-    "slug": "ai-translate-app",
+    "name": "UK Translate",
+    "slug": "uk-translate",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
