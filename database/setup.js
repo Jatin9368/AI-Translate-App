@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: '../backend/.env' });
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ai_translate_app';
-
 async function setup() {
   console.log('🔌 Connecting to MongoDB...');
   await mongoose.connect(MONGODB_URI);
